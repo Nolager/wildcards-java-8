@@ -8,4 +8,9 @@ public class ChocolateCake extends Cake {
         super(id);
         this.id = id;
     }
+
+    @Override
+    public String getName() {
+        return this.getClass().getName().concat(" ID: " + this.id);
+    }
 }

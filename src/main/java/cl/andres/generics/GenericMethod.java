@@ -31,22 +31,23 @@ public class GenericMethod {
         List<ChocolateCake> eighthList = Arrays.asList(new ChocolateCake(2), new ChocolateCake(20));
         List<VanillaCake> ninethList = Arrays.asList(new VanillaCake(11), new VanillaCake(22));
 
-        // TODO: 13-04-22 Fix error thrown with this exercise
-//        List<StuffedChocolateCake> tenthList = Arrays.asList(new StuffedChocolateCake(1), new StuffedChocolateCake(3));
-//        List<ChocolateCake> eleventhList = Arrays.asList(new ChocolateCake(2), new ChocolateCake(20));
-//        List<VanillaCake> twelvethList = Arrays.asList(new VanillaCake(11), new VanillaCake(22));
-//        List<ChocolateCake> chocolateUnion = union(firstList, secondList);
-//        List<Cake> fullUnion = union(chocolateUnion, twelvethList);
+        List<StuffedChocolateCake> tenthList = Arrays.asList(new StuffedChocolateCake(1), new StuffedChocolateCake(3));
+        List<ChocolateCake> eleventhList = Arrays.asList(new ChocolateCake(2), new ChocolateCake(20));
+        List<VanillaCake> twelvethList = Arrays.asList(new VanillaCake(11), new VanillaCake(22));
+        List<ChocolateCake> chocolateUnion = union(tenthList, eleventhList);
+        List<Cake> fullUnion = union(chocolateUnion, twelvethList);
 
         union(firstList, secondList);
         union(thirdList, fourthList);
         union(fifthList, sixthList);
         union(union(seventhList, eighthList), ninethList);
+
+        fullUnion.forEach(cake -> System.out.println(cake.getName()));
     }
 
-    public static List<Cake> union(List<? extends Cake> firstList, List<? extends Cake> secondList) {
+    public static <T> List<T> union(List<? extends T> firstList, List<? extends T> secondList) {
 
-        List<Cake> unionList = new ArrayList<>();
+        List<T> unionList = new ArrayList<>();
         unionList.addAll(firstList);
         unionList.addAll(secondList);
 
