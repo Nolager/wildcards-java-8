@@ -1,6 +1,6 @@
 package cl.andres.generics;
 
-public abstract class Cake {
+public class Cake {
 
     private long id;
 
