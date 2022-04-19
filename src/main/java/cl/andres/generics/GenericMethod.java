@@ -43,6 +43,24 @@ public class GenericMethod {
         union(union(seventhList, eighthList), ninethList);
 
         fullUnion.forEach(cake -> System.out.println(cake.getName()));
+
+        Object[] numbersArray = new Object[2];
+        numbersArray[0] = 1;
+        numbersArray[1] = 2;
+        Arrays.stream(swapElements(numbersArray, 0, 1)).forEach(System.out::println);
+
+        List<Number> integersList = Arrays.asList(3, 4);
+        swapElements(integersList, 0, 1).forEach(System.out::println);
+
+        // FIXME: 19-04-22 This throws cast error
+//        Integer[] integersArray = new Integer[2];
+//        integersArray[0] = 5;
+//        integersArray[1] = 6;
+//        Number[] swapedNumbers = swapElements(integersArray, 0, 1);
+//        Arrays.stream(swapedNumbers).forEach(System.out::println);
+
+        List<Number> numbersList = Arrays.asList(Integer.valueOf("7"), Integer.valueOf("8"));
+        swapElements(numbersList, 0, 1).forEach(System.out::println);
     }
 
     public static <T> List<T> union(List<? extends T> firstList, List<? extends T> secondList) {
@@ -52,5 +70,24 @@ public class GenericMethod {
         unionList.addAll(secondList);
 
         return unionList;
+    }
+
+    public static <T> T[] swapElements(Object[] array, int firstIndex, int secondIndex) {
+        Object[] copyOfArray = new Object[array.length];
+        System.arraycopy(array, 0, copyOfArray, 0, array.length);
+
+        copyOfArray[firstIndex] = array[secondIndex];
+        copyOfArray[secondIndex] = array[firstIndex];
+
+        return (T[]) copyOfArray;
+    }
+
+    public static <T> List<T> swapElements(List<? extends T> list, int firstIndex, int secondIndex) {
+
+        List<T> copyOfList = new ArrayList<>();
+        copyOfList.add(list.get(secondIndex));
+        copyOfList.add(list.get(firstIndex));
+
+        return copyOfList;
     }
 }
